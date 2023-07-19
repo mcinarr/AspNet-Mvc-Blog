@@ -6,14 +6,14 @@ namespace AppWebMvc.Controllers.UserControllers
 	{
 		public IActionResult Search(string? query, int? page)
 		{
-			// User'ın Blog Arama Controller'ı
+			// User'ın Blog Arama Action'u
 			
 			return View();
 		}
 
 		public IActionResult Detail(int? id)
 		{
-			// User'ın Blog Detay Controller'ı
+			// User'ın Blog Detay Action'u
 			return View();
 		}
 	}

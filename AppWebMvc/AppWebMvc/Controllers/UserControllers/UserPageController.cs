@@ -6,7 +6,7 @@ namespace AppWebMvc.Controllers.UserControllers
 	{
 		public IActionResult Detail(int? id)
 		{
-			// User'ın Sayfa Detay Controller'ı
+			// User'ın Sayfa Detay Action'u
 			
 			return View();
 		}

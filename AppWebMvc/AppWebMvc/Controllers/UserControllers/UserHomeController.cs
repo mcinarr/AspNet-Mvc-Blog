@@ -4,7 +4,7 @@ namespace AppWebMvc.Controllers.UserControllers
 {
 	public class UserHomeController : Controller
 	{
-		// User'ın AnaSayfa Controller'ı
+		// User'ın AnaSayfa Action'u
 		public IActionResult Index()
 		{
 			return View();

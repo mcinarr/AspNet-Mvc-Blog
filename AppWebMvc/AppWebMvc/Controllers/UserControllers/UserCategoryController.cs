@@ -4,7 +4,7 @@ namespace AppWebMvc.Controllers.UserControllers
 {
 	public class UserCategoryController : Controller
 	{
-		// User'ın Kategori Controller'ı
+		// User'ın Kategori Action'u
 		public IActionResult Index(int? id, int? page)
 		{
 			return View();
