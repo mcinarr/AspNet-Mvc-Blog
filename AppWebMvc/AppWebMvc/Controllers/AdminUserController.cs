@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace AppWebMvc.Controllers.AdminControllers
+namespace AppWebMvc.Controllers
 {
-	public class AdminUserController : Controller
-	{
-		public IActionResult Index()
-		{
-			// Admin'in Kullanıcı Yönetim Action'u
-			return View();
-		}
-	}
+    public class AdminUserController : Controller
+    {
+        public IActionResult Index()
+        {
+            // Admin'in Kullanıcı Yönetim Action'u
+            return View();
+        }
+    }
 }
