@@ -23,45 +23,14 @@
 						</button>
 						<div class="collapse navbar-collapse" id="navbar-collapse">
 							<ul id="menu" class="menu navbar-nav mx-auto">
-								<li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										Home
-									</a>
-									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-										<a class="dropdown-item" href="@Url.Action("Index",  "Home")">Home 1</a>
-										<a class="dropdown-item" href="@Url.Action("Index2", "Home")">Home 2</a>
-										<a class="dropdown-item" href="@Url.Action("Index3", "Home")">Home 3</a>
-										<a class="dropdown-item" href="@Url.Action("Index4", "Home")">Home 4</a>
-										<a class="dropdown-item" href="@Url.Action("Index5", "Home")">Home 5</a>
-										<a class="dropdown-item" href="@Url.Action("Index6", "Home")">Home 6</a>
-									</div>
-								</li>
-								<li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										Blog Posts
-									</a>
-									<div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-										<a class="dropdown-item" href="@Url.Action("FullWidth", "UserBlogPost")">Standard Fullwidth</a>
-										<a class="dropdown-item" href="@Url.Action("LeftSide", "UserBlogPost")">Standard Left Sidebar</a>
-										<a class="dropdown-item" href="@Url.Action("RightSide", "UserBlogPost")">Standard Right Sidebar</a>
-									</div>
-								</li>
+
+								<li class="nav-item"> <a href="@Url.Action("Index","Home")" class="nav-link">Home</a></li>
 								<li class="nav-item"><a href="@Url.Action("Detail", "UserPage")" class="nav-link">About</a></li>
 								<li class="nav-item"><a href="@Url.Action("Index","UserCategory")" class="nav-link">Category</a></li>
-								<li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										Post Format
-									</a>
-									<div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-										<a class="dropdown-item" href="@Url.Action("Video", "UserPost")">Video Formats</a>
-										<a class="dropdown-item" href="@Url.Action("Audio", "UserPost")">Audio Format</a>
-										<a class="dropdown-item" href="@Url.Action("Quote", "UserPost")">Quote Format</a>
-										<a class="dropdown-item" href="@Url.Action("Gallery", "UserPost")">Gallery Format</a>
-										<a class="dropdown-item" href="@Url.Action("Image", "UserPost")">Image Format</a>
-									</div>
-								</li>
 								<li class="nav-item"><a href="@Url.Action("Login","UserAuth")" class="nav-link">Login </a></li>
+								<li class="nav-item"><a href="@Url.Action("Register","UserAuth")" class="nav-link">Register</a></li>
 							</ul>
+
 							<ul class="list-inline mb-0 d-block d-lg-none">
 								<li class="list-inline-item"><a href="https://tr-tr.facebook.com/"><i class="ti-facebook"></i></a></li>
 								<li class="list-inline-item"><a href="https://twitter.com/i/flow/login?redirect_after_login=%2Flogin%3Flang%3Dtr"><i class="ti-twitter"></i></a></li>
