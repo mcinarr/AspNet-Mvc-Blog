@@ -1,19 +1,28 @@
-﻿using AppWebMvc.Models;
+﻿using App.Persistence.Data;
+using App.Web.Mvc.Models;
+using AppWebMvc.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace AppWebMvc.Controllers
+namespace App.Web.Mvc.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly ILogger<HomeController> _logger;
 
-		public HomeController(ILogger<HomeController> logger)
+		private readonly AppDbContext _db;
+
+
+		public HomeController(AppDbContext db)
 		{
-			_logger = logger;
+			_db = db;
 		}
 
 		public IActionResult Index()
+		{
+			return View();
+		}
+
+		public IActionResult Privacy()
 		{
 			return View();
 		}
@@ -23,5 +32,6 @@ namespace AppWebMvc.Controllers
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
+
 	}
 }

@@ -1,3 +1,6 @@
+using App.Business.Services;
+using App.Business.Services.Abstract;
+using App.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,10 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<AppWebMvc.Data.AppDbContext>(options =>
-{
-	options.UseSqlServer(builder.Configuration.GetConnectionString("DBConStr"));
-});
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DBConStr")));
+
+builder.Services.AddScoped<IPostService, PostService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ISettingService, SettingService>();
+builder.Services.AddScoped<IPageService, PageService>();
 
 var app = builder.Build();
 
@@ -28,7 +34,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
-	name: "default",
-	pattern: "{controller=Home}/{action=Index}/{id?}");
+		name: "default",
+		pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

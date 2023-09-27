@@ -1,61 +1,53 @@
-﻿using App.Web.Mvc.Data.Entity;
-using AppWebMvc.Data;
-using AspNetCore;
+﻿using App.Business.Services.Abstract;
+using App.Persistence.Data.Entity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
-namespace AppWebMvc.Controllers
+namespace App.Web.Mvc.Controllers
 {
-    public class UserAuthController : Controller
-    {
-		private readonly AppDbContext _context;
-		public IActionResult Register(AppDbContext context)
-        {
-            User user = new User();
+	public class AuthController : Controller
+	{
 
-            if(ModelState.IsValid)
-            {
-				var user1 = new User()
-				{
-					UserName = user.UserName,
-					UserSurname = user.UserSurname,
-					UserNickName = user.UserNickName,
-					UserPhoneNumber = user.UserPhoneNumber,
-					UserEmail = user.UserEmail,
-					UserPassword = user.UserPassword
-				};
+		//private readonly AppDbContext _db;
+		private readonly IUserService _userService;
+		public AuthController(IUserService userService)
+		{
+			_userService = userService;
+		}
 
-				_context.Users.Add(user1);
-				_context.SaveChanges();
+		public IActionResult Register()
+		{
+			User user = new User();
 
+			return View(user);
+		}
+
+		[HttpPost]
+		public IActionResult Register(User user)
+		{
+			if (user == null)
+			{
+				return View();
+			}
+			if (ModelState.IsValid)
+			{
+				_userService.Insert(user);
+				_userService.SaveChanges();
+				/*				_db.User.Add(user);
+								_db.SaveChanges();*/
 				return RedirectToAction("Index", "Home");
-
-			}
-            else
-            {
-				return View(context);
 			}
 
-            
+			return View(user);
+		}
 
-            
+		public IActionResult Login(string redirectUrl)
+		{
+			return View();
+		}
+		public IActionResult ForgotPassword()
+		{
+			return View();
+		}
 
-
-
-
-			
-        }
-
-        public IActionResult Login(string? redirectUrl)
-        {
-            // User'ın Giriş Yapma Action'u
-            return View();
-        }
-
-        public IActionResult ForgotPassword()
-        {
-            // User'ın Şifremi Unuttum Action'u
-            return View();
-        }
-    }
+	}
 }
