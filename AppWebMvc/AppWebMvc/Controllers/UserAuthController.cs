@@ -1,25 +1,53 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using App.Business.Services.Abstract;
+using App.Persistence.Data.Entity;
+using Microsoft.AspNetCore.Mvc;
 
-namespace AppWebMvc.Controllers
+namespace App.Web.Mvc.Controllers
 {
-    public class UserAuthController : Controller
-    {
-        public IActionResult Register()
-        {
-            // User'ın Kaydol Action'u
-            return View();
-        }
+	public class AuthController : Controller
+	{
 
-        public IActionResult Login(string? redirectUrl)
-        {
-            // User'ın Giriş Yapma Action'u
-            return View();
-        }
+		//private readonly AppDbContext _db;
+		private readonly IUserService _userService;
+		public AuthController(IUserService userService)
+		{
+			_userService = userService;
+		}
 
-        public IActionResult ForgotPassword()
-        {
-            // User'ın Şifremi Unuttum Action'u
-            return View();
-        }
-    }
+		public IActionResult Register()
+		{
+			User user = new User();
+
+			return View(user);
+		}
+
+		[HttpPost]
+		public IActionResult Register(User user)
+		{
+			if (user == null)
+			{
+				return View();
+			}
+			if (ModelState.IsValid)
+			{
+				_userService.Insert(user);
+				_userService.SaveChanges();
+				/*				_db.User.Add(user);
+								_db.SaveChanges();*/
+				return RedirectToAction("Index", "Home");
+			}
+
+			return View(user);
+		}
+
+		public IActionResult Login(string redirectUrl)
+		{
+			return View();
+		}
+		public IActionResult ForgotPassword()
+		{
+			return View();
+		}
+
+	}
 }
