@@ -1,3 +1,4 @@
+using App.Business;
 using App.Business.Services;
 using App.Business.Services.Abstract;
 using App.Persistence.Data;
@@ -15,6 +16,8 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ISettingService, SettingService>();
 builder.Services.AddScoped<IPageService, PageService>();
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 var app = builder.Build();
 
@@ -34,7 +37,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
-		name: "default",
-		pattern: "{controller=Home}/{action=Index}/{id?}");
+	name: "default",
+	pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
