@@ -16,6 +16,9 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ISettingService, SettingService>();
 builder.Services.AddScoped<IPageService, PageService>();
+builder.Services.AddScoped<IPostImageService, PostImageService>();
+builder.Services.AddScoped<IPostCommentService, PostCommentService>();
+
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
@@ -35,6 +38,11 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+
+app.MapControllerRoute(
+	name: "MyArea",
+	pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
 	name: "default",
