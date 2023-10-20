@@ -1,4 +1,5 @@
-﻿using App.Business.Services.Abstract;
+﻿using App.Business.Dtos.Setting;
+using App.Business.Services.Abstract;
 using App.Persistence.Data;
 using App.Persistence.Data.Entity;
 
@@ -11,7 +12,6 @@ namespace App.Business.Services
 		public SettingService(AppDbContext db)
 		{
 			_db = db;
-
 		}
 		public void DeleteById(int id)
 		{
@@ -24,9 +24,22 @@ namespace App.Business.Services
 			return _db.Setting.Select(e => e);
 		}
 
+		public IEnumerable<ViewSettingDto> GetAllByUserNames()
+		{
+			var viewSettingDtos = new List<ViewSettingDto>();
+
+			var settings = _db.Setting.Select(e => e).ToList();
+
+			foreach (var item in settings)
+			{
+				viewSettingDtos.Add(new ViewSettingDto { Id = item.Id, DarkMode = item.DarkMode, UserName = _db.User.FirstOrDefault(a => a.Id == item.Id).UserName });
+			}
+			return viewSettingDtos;
+		}
+
 		public Setting GetById(int id)
 		{
-			return _db.Setting.Find(id);
+			return _db.Setting.FirstOrDefault(a => a.Id == id);
 		}
 
 		public void Insert(Setting entity)
