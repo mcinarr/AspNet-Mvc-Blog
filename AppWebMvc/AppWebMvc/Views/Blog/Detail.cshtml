@@ -1,0 +1,10 @@
+﻿@model App.Persistence.Data.Entity.Post
+
+@{
+    ViewData["Title"] = "Blog Detail Page";
+    Layout = "_BlogLayout";
+}
+@*<h2 class="post-title mt-2">
+  @Model.FirstOrDefault().PostTitle
+</h2>*@
+<partial name="_BlogArticles" />
